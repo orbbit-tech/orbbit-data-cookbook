@@ -4,7 +4,7 @@ import { chromium } from '@playwright/test'
 
 const browser = await chromium.launch()
 const page = await browser.newPage({ viewport: { width: 1600, height: 900 }, deviceScaleFactor: 2 })
-await page.goto(`${process.env.DEMO_URL ?? 'http://localhost:3000'}/products/peanut-butter`)
+await page.goto(`${process.env.DEMO_URL ?? 'http://localhost:3000'}/products/granola`)
 await page.locator('[data-testid="competitor-row"]').first().waitFor()
 await page.waitForFunction(() => [...document.images].every((img) => img.complete)) // package images
 

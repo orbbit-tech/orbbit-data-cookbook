@@ -90,7 +90,7 @@ export function CompetitorPanel({
             <h2 className="font-serif text-3xl leading-tight tracking-tight">
               {productName}
               <span className="text-muted-foreground block">
-                vs {title(selected.brand)} {productTitle(selected.name)}
+                vs {title(selected.brand)} {withoutBrand(productTitle(selected.name), selected.brand)}
               </span>
             </h2>
             <p data-testid="match-line" className="text-muted-foreground text-sm">
@@ -247,6 +247,7 @@ const hueOf = (text: string) => [...text].reduce((h, c) => (h * 31 + c.charCodeA
 
 // A picture for each ingredient: the first matching word wins, else one per kind.
 const EMOJI: [RegExp, string][] = [
+  [/cookie/, '🍪'], [/caramel|toffee/, '🍮'], [/brownie|cake/, '🍰'], [/coffee|espresso/, '☕'], [/gum|carrageenan|lecithin|pectin/, '🌱'],
   [/maple/, '🍁'], [/honey/, '🍯'], [/peanut/, '🥜'], [/sunflower/, '🌻'], [/pumpkin/, '🎃'], [/coconut/, '🥥'],
   [/almond|pecan|walnut|cashew|hazelnut|pistachio/, '🌰'], [/sesame|tahini|flax|chia|hemp|seed/, '🌱'],
   [/oat|wheat|barley|rye|flour|grain/, '🌾'], [/rice/, '🍚'], [/corn/, '🌽'], [/chocolate|cocoa/, '🍫'],
@@ -263,4 +264,6 @@ const emojiFor = (name: string, kind: IngredientKind) => EMOJI.find(([pattern]) 
 
 const title = (text: string) => text.toLowerCase().replace(/(^|[\s(&/-])([a-z])/g, (_, before, c) => before + c.toUpperCase())
 // USDA names often repeat their parts ("GRANOLA, CINNAMON, RAISIN, CINNAMON, RAISIN").
+// USDA names often start with the brand again ("FARR BETTER, FROZEN CUSTARD").
+const withoutBrand = (name: string, brand: string) => name.replace(new RegExp(`^${title(brand).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')},?\\s*`, 'i'), '')
 const productTitle = (text: string) => title([...new Set(text.split(',').map((p) => p.trim()))].join(', '))
