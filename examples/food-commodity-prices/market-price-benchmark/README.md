@@ -67,7 +67,7 @@ Outside Next.js, delete the last section of `lib/market-benchmark.ts` and call `
 ## Run the demo
 
 ```bash
-cd examples/food-commodity-prices/market-benchmark
+cd examples/food-commodity-prices/market-price-benchmark
 cp .env.example .env.local   # then paste your API key
 npm install
 npm run dev
