@@ -1,0 +1,74 @@
+{
+  "note": "Made-up example purchases for the demo. Replace with your customer's own purchase history.",
+  "items": [
+    {
+      "slug": "butter",
+      "name": "Butter, Grade AA",
+      "short": "Butter",
+      "pack": "36 lb case",
+      "metric": "butter_margarine_aa_us_chicago_wholesale_daily_close_price_usd_per_lb",
+      "region": "Chicago wholesale",
+      "purchases": [
+        { "date": "2025-10-09", "price": 1.92 },
+        { "date": "2025-11-06", "price": 1.9 },
+        { "date": "2025-12-04", "price": 1.84 },
+        { "date": "2026-01-08", "price": 1.82 },
+        { "date": "2026-02-05", "price": 1.8 },
+        { "date": "2026-03-05", "price": 2.12 },
+        { "date": "2026-04-09", "price": 2.15 },
+        { "date": "2026-05-07", "price": 2.08 },
+        { "date": "2026-06-04", "price": 2.02 },
+        { "date": "2026-07-09", "price": 2.0 },
+        { "date": "2026-08-06", "price": 1.92 },
+        { "date": "2026-09-10", "price": 1.86 },
+        { "date": "2026-10-09", "price": 1.8 }
+      ]
+    },
+    {
+      "slug": "cheddar",
+      "name": "Cheddar, 40 lb block",
+      "short": "Cheddar",
+      "pack": "40 lb block",
+      "metric": "cheese_block_cheddar_40_lb_us_chicago_wholesale_daily_close_price_usd_per_lb",
+      "region": "Chicago wholesale",
+      "purchases": [
+        { "date": "2025-10-09", "price": 2.05 },
+        { "date": "2025-11-06", "price": 2.02 },
+        { "date": "2025-12-04", "price": 1.98 },
+        { "date": "2026-01-08", "price": 1.95 },
+        { "date": "2026-02-05", "price": 1.96 },
+        { "date": "2026-03-05", "price": 2.0 },
+        { "date": "2026-04-09", "price": 1.98 },
+        { "date": "2026-05-07", "price": 1.94 },
+        { "date": "2026-06-04", "price": 1.9 },
+        { "date": "2026-07-09", "price": 1.88 },
+        { "date": "2026-08-06", "price": 1.86 },
+        { "date": "2026-09-10", "price": 1.83 },
+        { "date": "2026-10-09", "price": 1.8 }
+      ]
+    },
+    {
+      "slug": "dry-whey",
+      "name": "Dry whey, Extra grade",
+      "short": "Dry whey",
+      "pack": "50 lb bag",
+      "metric": "cooking_baking_ingredients_extra_dry_whey_us_chicago_wholesale_daily_close_price_usd_per_lb",
+      "region": "Chicago wholesale",
+      "purchases": [
+        { "date": "2025-10-09", "price": 0.82 },
+        { "date": "2025-11-06", "price": 0.82 },
+        { "date": "2025-12-04", "price": 0.83 },
+        { "date": "2026-01-08", "price": 0.84 },
+        { "date": "2026-02-05", "price": 0.84 },
+        { "date": "2026-03-05", "price": 0.85 },
+        { "date": "2026-04-09", "price": 0.86 },
+        { "date": "2026-05-07", "price": 0.88 },
+        { "date": "2026-06-04", "price": 0.9 },
+        { "date": "2026-07-09", "price": 0.93 },
+        { "date": "2026-08-06", "price": 0.96 },
+        { "date": "2026-09-10", "price": 0.99 },
+        { "date": "2026-10-09", "price": 1.02 }
+      ]
+    }
+  ]
+}
