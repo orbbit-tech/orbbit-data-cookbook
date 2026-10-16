@@ -36,10 +36,10 @@ export function CompetitorPanel({
   const both = selected.ingredients.filter((i) => i.shared).map((i) => i.name)
 
   return (
-    <div data-testid="competitor-panel" className="grid gap-16">
+    <div data-testid="competitor-panel" className="grid gap-8">
       <section className="grid items-start gap-10 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
-        <div className="md:sticky md:top-8">
-          <div className="bg-muted grid grid-cols-2 items-end gap-6 rounded-3xl px-8 pt-12 pb-8">
+        <div className="grid gap-8">
+          <div className="bg-muted grid grid-cols-2 items-end gap-6 rounded-3xl px-8 pt-10 pb-6">
             <Shot image={productImage} box={productImage ? boxes[productImage] : null} label="Yours" />
             <Shot
               image={imageOf(selected)}
@@ -48,12 +48,46 @@ export function CompetitorPanel({
               fallback={<Package shape={pack} competitor={selected} className="aspect-square w-full rounded-2xl" />}
             />
           </div>
+
+          <div className="grid gap-3">
+            <h3 className="font-serif text-xl">Also close to yours</h3>
+            <p className="text-muted-foreground -mt-2 text-xs" data-testid="product-count">
+              The {result.closest.length} of {result.productCount.toLocaleString('en-US')} {result.query} labels in {result.category} that share
+              the most ingredients with yours
+            </p>
+            <div className="grid grid-cols-5 gap-3">
+              {result.closest.map((c) => (
+                <Link key={c.id} href={hrefFor(c.id)} scroll={false} data-testid="competitor-row" className="group grid min-w-0 gap-1.5" title={`${title(c.brand)} · ${productTitle(c.name)}`}>
+                  <span
+                    className={cn(
+                      'bg-muted relative block aspect-square w-full overflow-hidden rounded-xl ring-2 ring-transparent ring-offset-2 ring-offset-background transition',
+                      c.id === selected.id ? 'ring-warm' : 'group-hover:ring-border',
+                    )}
+                  >
+                    {imageOf(c) ? (
+                      <span className="absolute inset-[12%]">
+                        <Fitted src={imageOf(c)!} box={boxes[imageOf(c)!]} frameRatio={1} />
+                      </span>
+                    ) : (
+                      <Package shape={pack} competitor={c} className="absolute inset-0 h-full w-full" />
+                    )}
+                  </span>
+                  <span className="grid text-xs">
+                    <span className="truncate font-medium">{title(c.brand)}</span>
+                    <span className="text-muted-foreground">
+                      {c.sharedCount} of {result.recipe.length}
+                    </span>
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
         </div>
 
-        <div className="grid gap-10">
-          <div className="grid gap-3">
+        <div className="grid gap-7">
+          <div className="grid gap-2">
             <p className="text-muted-foreground text-sm">Closest products on the shelf · {result.query}</p>
-            <h2 className="font-serif text-4xl leading-tight tracking-tight">
+            <h2 className="font-serif text-3xl leading-tight tracking-tight">
               {productName}
               <span className="text-muted-foreground block">
                 vs {title(selected.brand)} {productTitle(selected.name)}
@@ -82,48 +116,6 @@ export function CompetitorPanel({
         </div>
       </section>
 
-      <section className="grid gap-5">
-        <h3 className="font-serif text-2xl">Also close to yours</h3>
-        <p className="text-muted-foreground -mt-3 text-sm" data-testid="product-count">
-          The {result.closest.length} of {result.productCount.toLocaleString('en-US')} {result.query} labels in {result.category} that share
-          the most ingredients with yours
-        </p>
-        <div className="flex gap-4 overflow-x-auto pb-2">
-          {result.closest.map((c) => (
-            <Link
-              key={c.id}
-              href={hrefFor(c.id)}
-              scroll={false}
-              data-testid="competitor-row"
-              className="group grid w-44 shrink-0 gap-2"
-            >
-              <span
-                className={cn(
-                  'bg-muted relative block aspect-square w-full overflow-hidden rounded-2xl ring-2 ring-transparent ring-offset-2 ring-offset-background transition',
-                  c.id === selected.id ? 'ring-warm' : 'group-hover:ring-border',
-                )}
-              >
-                {imageOf(c) ? (
-                  // eslint-disable-next-line @next/next/no-img-element -- images are linked from the store, not copied
-                  <span className="absolute inset-[14%]">
-                    <Fitted src={imageOf(c)!} box={boxes[imageOf(c)!]} frameRatio={1} />
-                  </span>
-                ) : (
-                  <Package shape={pack} competitor={c} className="absolute inset-0 h-full w-full" />
-                )}
-              </span>
-              <span className="grid gap-0.5 text-sm">
-                <span className="truncate font-medium">{title(c.brand)}</span>
-                <span className="text-muted-foreground truncate">{productTitle(c.name)}</span>
-                <span className="text-muted-foreground text-xs">
-                  {c.sharedCount} of {result.recipe.length} ingredients
-                </span>
-              </span>
-            </Link>
-          ))}
-        </div>
-      </section>
-
       <p data-testid="source-line" className="text-muted-foreground text-xs">
         Labels: USDA via Orbbit Data · Package images belong to each brand, linked from kroger.com and the brand&apos;s own website
       </p>
@@ -142,17 +134,17 @@ function Statement({ label, text }: { label: string; text: string }) {
 
 function Group({ label, names, kindOf }: { label: string; names: string[]; kindOf: Map<string, IngredientKind> }) {
   return (
-    <div className="grid gap-4" data-testid="ingredient-group">
-      <h3 className="font-serif text-xl">
+    <div className="grid gap-3" data-testid="ingredient-group">
+      <h3 className="font-serif text-lg">
         {label} <span className="text-muted-foreground text-base">{names.length}</span>
       </h3>
       {names.length === 0 ? (
         <p className="text-muted-foreground text-sm">None</p>
       ) : (
-        <ul className="grid grid-cols-[repeat(auto-fill,6rem)] gap-x-3 gap-y-4">
+        <ul className="grid grid-cols-[repeat(auto-fill,5rem)] gap-x-3 gap-y-3">
           {names.map((name) => (
             <li key={name} title={name} className="grid content-start justify-items-center gap-2 text-center">
-              <span className="bg-muted grid size-24 place-items-center rounded-2xl text-4xl" aria-hidden>
+              <span className="bg-muted grid size-20 place-items-center rounded-2xl text-3xl" aria-hidden>
                 {emojiFor(name, kindOf.get(name) ?? 'other')}
               </span>
               <span className="line-clamp-2 h-8 text-xs leading-4 capitalize">{name}</span>
