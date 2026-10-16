@@ -18,10 +18,11 @@ const box = await page.evaluate(() => {
 const margin = 32
 let width = box.width + margin * 2
 let height = box.height + margin
-if (width / height < 16 / 9) width = Math.min(1600, (height * 16) / 9)
+if (width / height < 16 / 9) width = Math.min(2400, (height * 16) / 9)
 height = (width * 9) / 16
-await page.setViewportSize({ width: 1600, height: Math.ceil(box.y + height + 50) })
-const x = Math.max(0, box.x + box.width / 2 - width / 2)
+await page.setViewportSize({ width: 2400, height: Math.ceil(box.y + height + 50) })
+const left = await page.evaluate(() => document.querySelector('main')!.getBoundingClientRect().left)
+const x = Math.max(0, left + box.width / 2 - width / 2)
 await page.screenshot({ path: 'assets/demo.png', clip: { x, y: Math.max(0, box.y - margin / 2), width, height } })
 await browser.close()
 console.log('Wrote assets/demo.png')
