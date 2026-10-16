@@ -1,0 +1,23 @@
+{
+  "note": "Real products standing in for your customer's product. Their labels are read from Orbbit Data by barcode.",
+  "products": [
+    {
+      "slug": "peanut-butter",
+      "upc": "0071018010794",
+      "query": "peanut butter",
+      "category": "Nut & Seed Butters",
+      "pack": "jar",
+      "name": "Peanut butter",
+      "image": "https://teddie.com/wp-content/uploads/2022/06/Product-Home-Flax-Smooth@2x.png"
+    },
+    {
+      "slug": "granola",
+      "upc": "0021908133218",
+      "query": "granola",
+      "category": "Cereal",
+      "pack": "bag",
+      "name": "Granola",
+      "image": null
+    }
+  ]
+}
