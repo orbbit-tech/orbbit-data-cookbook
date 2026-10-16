@@ -7,7 +7,9 @@ Each example is a TypeScript function you copy into your own code, an optional R
 ## Examples
 
 - [Food Commodity Prices](./examples/food-commodity-prices): USDA market prices for dairy, chicken and other food commodities.
-  - [market-benchmark](./examples/food-commodity-prices/market-benchmark): show how a customer's purchase price moved against the USDA market over 12 months.
+  - [market-price-benchmark](./examples/food-commodity-prices/market-price-benchmark): show how a customer's purchase price moved against the USDA market over 12 months.
+- [Branded Food Labels](./examples/branded-food-labels): ingredients and nutrition for US packaged foods.
+  - [competitor-product-ingredients](./examples/branded-food-labels/competitor-product-ingredients): show the closest competing products, and which ingredients both use, only theirs uses, and only yours uses.
 
 ## Before you start
 

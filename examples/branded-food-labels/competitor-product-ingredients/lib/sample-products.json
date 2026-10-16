@@ -1,0 +1,23 @@
+{
+  "note": "Real products standing in for your customer's product. Their labels are read from Orbbit Data by barcode.",
+  "products": [
+    {
+      "slug": "granola",
+      "name": "Granola",
+      "upc": "0021908133218",
+      "query": "granola",
+      "category": "Cereal",
+      "pack": "bag",
+      "image": null
+    },
+    {
+      "slug": "ice-cream",
+      "name": "Ice cream",
+      "upc": "072830070164",
+      "query": "cookie dough",
+      "category": "Ice Cream & Frozen Yogurt",
+      "pack": "tub",
+      "image": null
+    }
+  ]
+}

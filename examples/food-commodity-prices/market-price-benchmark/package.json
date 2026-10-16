@@ -1,5 +1,5 @@
 {
-  "name": "market-benchmark",
+  "name": "market-price-benchmark",
   "private": true,
   "type": "module",
   "scripts": {
