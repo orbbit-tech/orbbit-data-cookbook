@@ -3,7 +3,7 @@ import './globals.css'
 
 const garamond = EB_Garamond({ subsets: ['latin'], variable: '--font-garamond' })
 
-export const metadata = { title: 'Competitor product ingredients · Orbbit Data Cookbook' }
+export const metadata = { title: 'Competitor Product Ingredients Comparison · Orbbit Data Cookbook' }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

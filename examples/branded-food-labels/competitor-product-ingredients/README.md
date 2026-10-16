@@ -1,8 +1,8 @@
-# Competitor Product Ingredients
+# Competitor Product Ingredients Comparison
 
 A feature you add to software for food brands: on each product page, the closest competing products on the shelf, and which ingredients both use, only theirs uses, and only yours uses.
 
-![Competitor Product Ingredients: Cascadian Farm granola next to its closest competitors](./assets/demo.png)
+![Competitor Product Ingredients Comparison: Cascadian Farm granola next to its closest competitors](./assets/demo.png)
 
 **Data set:** [Branded Food Labels](https://www.orbbit.co/data/developers/data-directory) · **Endpoint:** [`GET /v1/branded-foods`](https://docs.orbbit.co/industry-data/cpg/branded-food) · **Cost:** $0.01 per 200 labels, cached for 7 days
 
