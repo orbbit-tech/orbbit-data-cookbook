@@ -17,4 +17,11 @@ When adding a feature to a user's project:
 - `GET /v1/commodities` is free. `GET /v1/commodities/metric-values` costs $0.01 per call however many metrics it asks for, so batch metrics into one call.
 - Metrics stop updating at different times. Read `last_observed_on` from `GET /v1/commodities` before relying on one.
 
+For Branded Food Labels (`GET /v1/branded-foods`):
+
+- Each request returns up to 200 labels for $0.01. Follow `next_cursor` until it is absent to get every label of a type.
+- A label is as the brand last reported it to USDA, sometimes years ago. Show `modified_on`, and never use a label to say a product is safe for an allergy.
+- Brands write ingredients their own way. Clean them before comparing (see `cleanIngredients` in `examples/branded-food-labels/competitor-product-ingredients`).
+- Show the source: "Labels: USDA via Orbbit Data".
+
 Full docs: https://docs.orbbit.co. Docs for agents: https://docs.orbbit.co/llms.txt.
