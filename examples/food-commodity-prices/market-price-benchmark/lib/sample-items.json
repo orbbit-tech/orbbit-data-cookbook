@@ -6,7 +6,7 @@
       "name": "Butter, Grade AA",
       "short": "Butter",
       "pack": "36 lb case",
-      "metric": "butter_margarine_aa_us_chicago_wholesale_daily_close_price_usd_per_lb",
+      "metric": "butter_aa_us_chicago_wholesale_daily_close_price_usd_per_lb",
       "region": "Chicago wholesale",
       "purchases": [
         { "date": "2025-10-09", "price": 1.92 },
@@ -52,7 +52,7 @@
       "name": "Dry whey, Extra grade",
       "short": "Dry whey",
       "pack": "50 lb bag",
-      "metric": "cooking_baking_ingredients_extra_dry_whey_us_chicago_wholesale_daily_close_price_usd_per_lb",
+      "metric": "dry_whey_extra_us_chicago_wholesale_daily_close_price_usd_per_lb",
       "region": "Chicago wholesale",
       "purchases": [
         { "date": "2025-10-09", "price": 0.82 },

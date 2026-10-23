@@ -14,7 +14,7 @@ When adding a feature to a user's project:
 - Every value has a unit (`usd_per_lb`, `usd_per_cwt`, ...) and a date. Show both, and only compare numbers in the same unit.
 - A USDA market price is not a supplier's price. Compare how prices moved, and never claim a price is too high.
 - Show the source: "Market price: USDA via Orbbit Data".
-- `GET /v1/commodities` is free. `GET /v1/commodities/metric-values` costs $0.01 per call however many metrics it asks for, so batch metrics into one call.
+- `GET /v1/commodities` is free. `GET /v1/commodities/metric-values` costs $0.01 per call however many metrics it asks for, so put every series you need in one call's `metric_names`.
 - Metrics stop updating at different times. Read `last_observed_on` from `GET /v1/commodities` before relying on one.
 
 For Branded Food Labels (`GET /v1/branded-foods`):

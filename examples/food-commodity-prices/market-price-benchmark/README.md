@@ -53,7 +53,7 @@ Both lines start at 0% on the first purchase and show how much each price moved 
    import { getCachedMarketBenchmark } from '@/lib/market-benchmark'
 
    const benchmark = await getCachedMarketBenchmark(
-     'butter_margarine_aa_us_chicago_wholesale_daily_close_price_usd_per_lb',
+     'butter_aa_us_chicago_wholesale_daily_close_price_usd_per_lb',
      purchases, // [{ date: '2025-10-09', price: 1.92 }, ...] in dollars per pound
    )
 

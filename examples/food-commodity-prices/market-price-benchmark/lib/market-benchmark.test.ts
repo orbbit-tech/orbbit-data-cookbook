@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { getMarketBenchmark, OrbbitDataError, type Purchase } from './market-benchmark'
 
-const METRIC = 'butter_margarine_aa_us_chicago_wholesale_daily_close_price_usd_per_lb'
+const METRIC = 'butter_aa_us_chicago_wholesale_daily_close_price_usd_per_lb'
 const API_KEY = 'orbbit_data_test'
 
 // ── fixtures ──────────────────────────────────────────────────────────────────
@@ -19,9 +19,9 @@ function buildMarketResponse(points = MARKET_POINTS) {
       {
         metric_name: METRIC,
         unit: 'usd_per_lb',
-        from: points[0]?.date ?? null,
-        to: points.at(-1)?.date ?? null,
-        points,
+        start_date: '2025-09-02',
+        end_date: points.at(-1)?.date ?? null,
+        values: points,
       },
     ],
   }
@@ -127,14 +127,33 @@ describe('getMarketBenchmark', () => {
     )
   })
 
-  it('makes exactly one API call reaching back 31 days before the first purchase', async () => {
+  it('asks for the series by name in metric_names', async () => {
+    await getMarketBenchmark({ metric: METRIC, purchases: buildPurchases(), apiKey: API_KEY })
+
+    const url = new URL(String(fetchMock.mock.calls[0][0]))
+    expect(url.searchParams.get('metric_names')).toBe(METRIC)
+  })
+
+  it('asks for prices from 31 days before the first purchase in start_date', async () => {
+    await getMarketBenchmark({ metric: METRIC, purchases: buildPurchases(), apiKey: API_KEY })
+
+    const url = new URL(String(fetchMock.mock.calls[0][0]))
+    expect(url.searchParams.get('start_date')).toBe('2025-09-02')
+  })
+
+  it('never sends the old inputs metrics or from', async () => {
+    await getMarketBenchmark({ metric: METRIC, purchases: buildPurchases(), apiKey: API_KEY })
+
+    const url = new URL(String(fetchMock.mock.calls[0][0]))
+    expect(url.searchParams.has('metrics')).toBe(false)
+    expect(url.searchParams.has('from')).toBe(false)
+  })
+
+  it('makes exactly one call, to /v1/commodities/metric-values', async () => {
     await getMarketBenchmark({ metric: METRIC, purchases: buildPurchases(), apiKey: API_KEY })
 
     expect(fetchMock).toHaveBeenCalledTimes(1)
-    const url = new URL(String(fetchMock.mock.calls[0][0]))
-    expect(url.pathname).toBe('/v1/commodities/metric-values')
-    expect(url.searchParams.get('metrics')).toBe(METRIC)
-    expect(url.searchParams.get('from')).toBe('2025-09-02')
+    expect(new URL(String(fetchMock.mock.calls[0][0])).pathname).toBe('/v1/commodities/metric-values')
   })
 
   it('sends the API key only in the authorization header', async () => {
