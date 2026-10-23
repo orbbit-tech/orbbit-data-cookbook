@@ -55,18 +55,18 @@ export async function getMarketBenchmark(options: {
 
   // One call ($0.01): from a month before the first purchase up to the market's newest value.
   const url = new URL('https://data-api.orbbit.co/v1/commodities/metric-values')
-  url.searchParams.set('metrics', metric)
-  url.searchParams.set('from', daysBefore(purchases[0].date, LOOKBACK_DAYS))
+  url.searchParams.set('metric_names', metric)
+  url.searchParams.set('start_date', daysBefore(purchases[0].date, LOOKBACK_DAYS))
   const res = await fetch(url, { headers: { authorization: `Bearer ${apiKey}` } })
   const body = await res.json().catch(() => null)
   if (!res.ok) throw new OrbbitDataError(res.status, body?.error?.message ?? res.statusText)
 
-  const series: { unit: string; points: { date: string; value: number }[] } = body.data[0]
+  const series: { unit: string; values: { date: string; value: number }[] } = body.data[0]
 
   // Pair each purchase with the market value on or before its date.
   const paired: { date: string; price: number; market: number }[] = []
   for (const purchase of purchases) {
-    const market = series.points.findLast((p) => p.date <= purchase.date)
+    const market = series.values.findLast((p) => p.date <= purchase.date)
     if (market) paired.push({ ...purchase, market: market.value })
   }
   if (paired.length === 0) throw new Error(`No market values on or before any purchase for ${metric}`)
@@ -81,7 +81,7 @@ export async function getMarketBenchmark(options: {
     unit: series.unit,
     firstDate: base.date,
     lastDate: last.date,
-    marketNewestDate: series.points.at(-1)!.date,
+    marketNewestDate: series.values.at(-1)!.date,
     points: paired.map((p) => ({
       date: p.date,
       you: round((p.price / base.price) * 100),
