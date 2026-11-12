@@ -24,4 +24,4 @@ For Branded Food Labels (`GET /v1/branded-foods`):
 - Brands write ingredients their own way. Clean them before comparing (see `cleanIngredients` in `examples/branded-food-labels/competitor-product-ingredients`).
 - Show the source: "Labels: USDA via Orbbit Data".
 
-Full docs: https://docs.orbbit.co. Docs for agents: https://docs.orbbit.co/llms.txt.
+Full docs: https://data-docs.orbbit.co. Docs for agents: https://data-docs.orbbit.co/llms.txt.

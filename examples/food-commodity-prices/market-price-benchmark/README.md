@@ -4,7 +4,7 @@ A feature you add to food software: on each item page, a chart of the price your
 
 ![Food Ingredient Market Benchmark: price you paid vs USDA market price](./assets/demo.png)
 
-**Data set:** [Food Commodity Prices](https://www.orbbit.co/data/developers/data-directory) · **Endpoint:** [`GET /v1/commodities/metric-values`](https://docs.orbbit.co/api-reference/commodities/get-commodity-metric-values) · **Cost:** $0.01 per item, cached for 12 hours
+**Data set:** [Food Commodity Prices](https://www.orbbit.co/data/developers/data-directory) · **Endpoint:** [`GET /v1/commodities/metric-values`](https://data-docs.orbbit.co/api-reference/commodities/get-commodity-metric-values) · **Cost:** $0.01 per item, cached for 12 hours
 
 ## Who this is for
 
@@ -60,7 +60,7 @@ Both lines start at 0% on the first purchase and show how much each price moved 
    return benchmark && <MarketBenchmarkCard benchmark={benchmark} region="Chicago wholesale" />
    ```
 
-Pick a metric in the same unit as the purchases. [`GET /v1/commodities`](https://docs.orbbit.co/market-data/commodities) lists them for free. Keep the card's source line, "Market price: USDA via Orbbit Data".
+Pick a metric in the same unit as the purchases. [`GET /v1/commodities`](https://data-docs.orbbit.co/market-data/commodities) lists them for free. Keep the card's source line, "Market price: USDA via Orbbit Data".
 
 Outside Next.js, delete the last section of `lib/market-benchmark.ts` and call `getMarketBenchmark({ metric, purchases, apiKey })` with your own cache.
 

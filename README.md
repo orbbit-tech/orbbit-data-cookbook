@@ -17,4 +17,4 @@ Each example is a TypeScript function you copy into your own code, an optional R
 2. Copy your **Default** API key from **API Keys**.
 3. Call the API from your server only, so the key never reaches a browser.
 
-Docs: [docs.orbbit.co](https://docs.orbbit.co). Using a coding agent? See [AGENTS.md](./AGENTS.md).
+Docs: [data-docs.orbbit.co](https://data-docs.orbbit.co). Using a coding agent? See [AGENTS.md](./AGENTS.md).
