@@ -4,7 +4,7 @@ A feature you add to software for food brands: on each product page, the closest
 
 ![Competitor Product Ingredients Comparison: Cascadian Farm granola next to its closest competitors](./assets/demo.png)
 
-**Data set:** [Branded Food Labels](https://www.orbbit.co/data/developers/data-directory) · **Endpoint:** [`GET /v1/branded-foods`](https://docs.orbbit.co/industry-data/cpg/branded-food) · **Cost:** $0.01 per 200 labels, cached for 7 days
+**Data set:** [Branded Food Labels](https://www.orbbit.co/data/developers/data-directory) · **Endpoint:** [`GET /v1/branded-foods`](https://data-docs.orbbit.co/industry-data/cpg/branded-food) · **Cost:** $0.01 per 200 labels, cached for 7 days
 
 ## Who this is for
 
@@ -55,7 +55,7 @@ An asterisk in a label, as in "OATS*, ... *ORGANIC", is the brand's own footnote
 
 3. Optional: copy the panel in [`components/competitor-panel.tsx`](./components/competitor-panel.tsx) to show the result as in the screenshot. It uses package images from [`lib/product-images.ts`](./lib/product-images.ts) and [`lib/image-bounds.ts`](./lib/image-bounds.ts).
 
-Pick the category from [`GET /v1/branded-foods/categories`](https://docs.orbbit.co/industry-data/cpg/branded-food), which is free. Keep the panel's source line, "Labels: USDA via Orbbit Data".
+Pick the category from [`GET /v1/branded-foods/categories`](https://data-docs.orbbit.co/industry-data/cpg/branded-food), which is free. Keep the panel's source line, "Labels: USDA via Orbbit Data".
 
 Outside Next.js, delete the last section of `lib/competitor-ingredients.ts` and call `getClosestCompetitors({ recipe, query, category, apiKey })` with your own cache.
 
